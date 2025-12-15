@@ -1,11 +1,10 @@
-
-// import { UserRole } from '@/enums/UserRole';
+import { UserRole } from '@/enums/UserRole';
 import LoginPage from '@/pages/auth/LoginPage';
 import RegisterPage from '@/pages/auth/RegisterPage';
 
 export const routes = [
   //Public routes
-
+  { path: '/', element: <div>Home</div>, roles: [UserRole.User], isProtected: false },
   //Authencication
   { path: '/login', element: <LoginPage />, isProtected: false },
   { path: '/register', element: <RegisterPage />, isProtected: false },
