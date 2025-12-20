@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import { authService, type User } from '@/services/authService';
-import type { UserRole } from '@/enums/UserRole';
+import type { UserRoleType } from '@/enums/UserRole';
 
 export type AuthInfo = {
   isAuthenticated: boolean;
-  role: UserRole | null;
+  role: UserRoleType | null;
   user: User | null;
 };
 

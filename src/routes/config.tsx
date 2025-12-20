@@ -1,11 +1,24 @@
-import { UserRole } from '@/enums/UserRole';
+// import { UserRole } from '@/enums/UserRole';
 import LoginPage from '@/pages/auth/LoginPage';
-import RegisterPage from '@/pages/auth/RegisterPage';
+import DataManagementPage from '@/pages/admin/DataManagementPage';
+import CoordinationPage from '@/pages/coordinator/CoordinationPage';
+import type { AppRoute } from '@/types/routes';
 
-export const routes = [
-  //Public routes
-  { path: '/', element: <div>Home</div>, roles: [UserRole.User], isProtected: false },
-  //Authencication
+export const routes: AppRoute[] = [
+  //Authentication
   { path: '/login', element: <LoginPage />, isProtected: false },
-  { path: '/register', element: <RegisterPage />, isProtected: false },
+  //Admin routes
+  {
+    path: '/portal/admin/dashboard',
+    element: <DataManagementPage />,
+    // roles: [UserRole.Admin],
+    isProtected: false,
+  },
+  //Coordinator routes
+  {
+    path: '/portal/coordinator/dashboard',
+    element: <CoordinationPage />,
+    // roles: [UserRole.Coordinator],
+    isProtected: false,
+  },
 ];

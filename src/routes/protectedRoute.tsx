@@ -1,11 +1,11 @@
 import { Navigate } from 'react-router-dom';
 import { useContext, type ReactNode } from 'react';
 import { AuthContext } from '@/components/provider/auth/AuthContextType';
-import { UserRole } from '@/enums/UserRole';
-
+import { type UserRoleType } from '@/enums/UserRole';
+import { getHomeByRole } from '@/lib/utils';
 type RoleBasedRouteProps = {
   element: ReactNode;
-  roles?: UserRole[];
+  roles?: UserRoleType[];
 };
 
 export default function RoleBasedRoute({ element, roles = [] }: RoleBasedRouteProps) {
@@ -24,7 +24,7 @@ export default function RoleBasedRoute({ element, roles = [] }: RoleBasedRoutePr
   }
 
   if (roles.length > 0 && !roles.includes(user.role)) {
-    return <Navigate to="/" replace />;
+    return <Navigate to={getHomeByRole(user.role)} replace />;
   }
 
   return element;

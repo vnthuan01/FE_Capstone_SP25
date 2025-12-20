@@ -3,7 +3,7 @@ import type { AxiosResponse } from 'axios';
 import { authService } from '@/services/authService';
 import type {
   LoginPayload,
-  RegisterPayload,
+  // RegisterPayload,
   User,
   AuthResponse,
   LoginResponseData,
@@ -64,13 +64,13 @@ export function useAuth() {
   });
 
   // Register
-  const registerMutation = useMutation<
-    AxiosResponse<AuthResponse<string>>,
-    unknown,
-    RegisterPayload
-  >({
-    mutationFn: (data: RegisterPayload) => authService.register(data),
-  });
+  // const registerMutation = useMutation<
+  //   AxiosResponse<AuthResponse<string>>,
+  //   unknown,
+  //   RegisterPayload
+  // >({
+  //   mutationFn: (data: RegisterPayload) => authService.register(data),
+  // });
 
   // Logout
   const logoutMutation = useMutation({
@@ -87,9 +87,9 @@ export function useAuth() {
     isAuthenticated: !!profile,
     isLoading: isAuthLoading,
     login: loginMutation.mutateAsync,
-    register: registerMutation.mutateAsync,
+    // register: registerMutation.mutateAsync,
     logout: logoutMutation.mutateAsync,
     loginStatus: loginMutation.status,
-    registerStatus: registerMutation.status,
+    // registerStatus: registerMutation.status,
   };
 }

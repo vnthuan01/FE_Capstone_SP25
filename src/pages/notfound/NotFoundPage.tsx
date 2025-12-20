@@ -1,82 +1,97 @@
 import React from 'react';
-import { Facebook, Twitter, Instagram, Plus } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
+import { Facebook, Twitter, Instagram, Plus, ArrowLeft } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
-interface Error404Props {
-  onReturnHome?: () => void;
-  className?: string;
-}
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 
-const Error404: React.FC<Error404Props> = ({ onReturnHome, className = '' }) => {
-  const { t } = useTranslation();
-  const handleReturnHome = () => {
-    if (onReturnHome) {
-      onReturnHome();
-    } else {
-      // Default behavior - navigate to home
-      window.location.href = '/';
-    }
-  };
+const socialItems = [
+  {
+    icon: Facebook,
+    href: '#',
+    className: 'text-[#1877F2] border-[#1877F2]/40 hover:bg-[#1877F2] hover:text-white',
+  },
+  {
+    icon: Twitter,
+    href: '#',
+    className: 'text-[#1DA1F2] border-[#1DA1F2]/40 hover:bg-[#1DA1F2] hover:text-white',
+  },
+  {
+    icon: Instagram,
+    href: '#',
+    className:
+      'text-pink-500 border-pink-500/40 hover:bg-gradient-to-br hover:from-pink-500 hover:to-purple-600 hover:text-white',
+  },
+  {
+    icon: Plus,
+    href: '#',
+    className: 'text-muted-foreground border-border hover:bg-foreground hover:text-background',
+  },
+];
+
+const Error404: React.FC = () => {
+  const navigate = useNavigate();
 
   return (
-    <div className={`min-h-screen bg-gray-50 flex items-center justify-center px-4 ${className}`}>
-      <div className="text-center max-w-2xl mx-auto">
-        {/* Large 404 Number */}
-        <div className="mb-8">
-          <h1 className="text-9xl md:text-[12rem] font-light text-orange-400 leading-none">404</h1>
-        </div>
+    <div className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background px-4">
+      {/* 🌍 Background map / earth */}
+      <div
+        className="absolute inset-0 bg-cover bg-center opacity-20 dark:opacity-15"
+        style={{
+          backgroundImage: "url('/images/world-map.png')", // đổi path nếu cần
+        }}
+      />
 
-        {/* Error Message */}
-        <div className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-medium text-gray-700 mb-4 tracking-wide">
-            {t('errors.page_not_found_title')}
-          </h2>
+      {/* Gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-background/80 to-background" />
 
-          <p className="text-gray-500 text-base md:text-lg leading-relaxed max-w-md mx-auto">
-            {t('errors.page_not_found_description')}{' '}
-            <button
-              onClick={handleReturnHome}
-              className="text-orange-400 hover:text-orange-500 underline transition-colors duration-200"
+      {/* Content */}
+      <div className="relative z-10 w-full flex justify-center">
+        <Card className="w-full max-w-2xl border-none shadow-none bg-transparent">
+          <CardContent className="text-center animate-slideInUp">
+            {/* 404 */}
+            <h1 className="text-8xl md:text-[11rem] font-light text-foreground opacity-90 mb-6 select-none">
+              404
+            </h1>
+
+            {/* Title */}
+            <h2 className="text-2xl md:text-3xl font-semibold text-foreground mb-4">
+              Trang không tồn tại
+            </h2>
+
+            {/* Description */}
+            <p className="text-muted-foreground text-base md:text-lg mb-8 max-w-md mx-auto">
+              Đường dẫn bạn truy cập có thể đã bị xóa hoặc không còn tồn tại.
+            </p>
+
+            {/* Action */}
+            <Button
+              size="lg"
+              onClick={() => navigate(-1)}
+              className="gap-2 hover:scale-105 transition-transform"
             >
-              {t('errors.return_to_homepage')}
-            </button>
-          </p>
-        </div>
+              <ArrowLeft size={18} />
+              Quay về trang trước
+            </Button>
 
-        {/* Social Media Icons */}
-        <div className="flex items-center justify-center space-x-6">
-          <a
-            href="#"
-            className="w-10 h-10 flex items-center justify-center rounded-full border border-orange-200 text-orange-400 hover:bg-orange-400 hover:text-white transition-all duration-200"
-            aria-label="Facebook"
-          >
-            <Facebook size={18} />
-          </a>
-
-          <a
-            href="#"
-            className="w-10 h-10 flex items-center justify-center rounded-full border border-orange-200 text-orange-400 hover:bg-orange-400 hover:text-white transition-all duration-200"
-            aria-label="Twitter"
-          >
-            <Twitter size={18} />
-          </a>
-
-          <a
-            href="#"
-            className="w-10 h-10 flex items-center justify-center rounded-full border border-orange-200 text-orange-400 hover:bg-orange-400 hover:text-white transition-all duration-200"
-            aria-label="Instagram"
-          >
-            <Instagram size={18} />
-          </a>
-
-          <a
-            href="#"
-            className="w-10 h-10 flex items-center justify-center rounded-full border border-orange-200 text-orange-400 hover:bg-orange-400 hover:text-white transition-all duration-200"
-            aria-label="Google Plus"
-          >
-            <Plus size={18} />
-          </a>
-        </div>
+            {/* Social icons */}
+            <div className="flex items-center justify-center gap-5 mt-10">
+              {socialItems.map(({ icon: Icon, href, className }, index) => (
+                <Button
+                  key={index}
+                  variant="outline"
+                  size="icon"
+                  className={`rounded-full transition-all duration-300 hover:scale-110 hover:shadow-lg ${className}`}
+                  asChild
+                >
+                  <a href={href}>
+                    <Icon size={18} />
+                  </a>
+                </Button>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );

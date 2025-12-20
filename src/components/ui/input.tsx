@@ -12,6 +12,14 @@ const inputVariants = cva(
     file:h-full [&[type=file]]:py-0 file:border-solid file:border-input file:bg-transparent 
     file:font-medium file:not-italic file:text-foreground file:p-0 file:border-0 file:border-e
     aria-invalid:border-destructive/60 aria-invalid:ring-destructive/10 dark:aria-invalid:border-destructive dark:aria-invalid:ring-destructive/20
+    w-full rounded-lg
+  border border-input
+  bg-background
+  px-4 py-3.5 text-base
+  text-foreground
+  placeholder:text-muted-foreground
+  focus:border-primary focus:ring-1 focus:ring-primary
+  outline-none transition
   `,
   {
     variants: {

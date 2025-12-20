@@ -20,7 +20,7 @@ function TitleUpdater() {
     const segments = pathname.split('/').filter(Boolean);
 
     if (segments.length === 0) {
-      document.title = 'Law Stand';
+      document.title = 'ReliefCoord VN';
       return;
     }
 
@@ -32,7 +32,7 @@ function TitleUpdater() {
     }
 
     // Lấy segment cuối sau khi pop
-    lastSegment = segments[segments.length - 1] ?? 'Law Stand';
+    lastSegment = segments[segments.length - 1] ?? 'ReliefCoord VN';
 
     // Split theo dấu "-" và viết hoa chữ cái đầu mỗi từ
     const formatted = lastSegment
@@ -40,7 +40,7 @@ function TitleUpdater() {
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
       .join(' ');
 
-    document.title = `Law Stand - ${formatted}`;
+    document.title = `ReliefCoord VN - ${formatted}`;
   }, [pathname]);
 
   return null;

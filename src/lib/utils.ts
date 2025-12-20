@@ -1,3 +1,4 @@
+import { UserRole, type UserRoleType } from '@/enums/UserRole';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
@@ -51,4 +52,17 @@ export function toTimeOnly(date: Date): string {
   const seconds = date.getSeconds().toString().padStart(2, '0');
   const fraction = '0000000'; // luôn 7 số 0 như TimeOnly yêu cầu
   return `${hours}:${minutes}:${seconds}.${fraction}`;
+}
+
+export function getHomeByRole(role?: UserRoleType) {
+  switch (role) {
+    case UserRole.Admin:
+      return '/portal/admin/dashboard';
+
+    case UserRole.Coordinator:
+      return '/portal/coordinator/dashboard';
+
+    default:
+      return '/login';
+  }
 }

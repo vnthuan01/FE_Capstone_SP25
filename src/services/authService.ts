@@ -1,4 +1,4 @@
-import type { UserRole } from '@/enums/UserRole';
+import type { UserRoleType } from '@/enums/UserRole';
 import { apiClient } from '@/lib/apiClients';
 
 // Auth API Response wrapper
@@ -43,7 +43,7 @@ export interface User {
   postalCode?: string;
   city?: string;
   province?: string;
-  role: UserRole;
+  role: UserRoleType;
 }
 
 // Refresh Token
@@ -55,7 +55,7 @@ export const authService = {
   login: (data: LoginPayload) =>
     apiClient.post<AuthResponse<LoginResponseData>>('/Auth/login', data),
 
-  register: (data: RegisterPayload) => apiClient.post<AuthResponse<string>>('/Auth/register', data),
+  // register: (data: RegisterPayload) => apiClient.post<AuthResponse<string>>('/Auth/register', data),
 
   me: () => apiClient.get<AuthResponse<User>>('/Auth/me'),
 
