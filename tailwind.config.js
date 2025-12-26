@@ -20,6 +20,7 @@ export default {
         'text-sub-dark': '#92adc9',
         'text-muted-light': '#94a3b8',
         'text-muted-dark': '#586e85',
+        'card-light': '#ffffff',
         'card-dark': '#283039',
         // Status colors
         danger: '#EB001B',

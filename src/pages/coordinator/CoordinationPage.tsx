@@ -52,30 +52,35 @@ export default function CoordinationPage() {
   return (
     <DashboardLayout
       projects={[
-        { label: 'MD-2024: Dữ liệu nền', path: '/admin/data-management', icon: 'dataset' },
-        { label: 'FL-Hue: Lũ lụt Huế', path: '/coordinator/coordination', icon: 'flood' },
+        { label: 'Tổng quan', path: '/portal/coordinator/dashboard', icon: 'dashboard' },
+        { label: 'Điều phối & Bản đồ', path: '/portal/coordinator/maps', icon: 'map' },
+        { label: 'Đội tình nguyện', path: '/portal/coordinator/teams', icon: 'groups' },
+        {
+          label: 'Kho vận & Nhu yếu phẩm',
+          path: '/portal/coordinator/inventory',
+          icon: 'inventory_2',
+        },
       ]}
       navItems={[
-        { label: 'Tổng quan', path: '/coordinator/dashboard', icon: 'dashboard' },
-        { label: 'Điều phối & Bản đồ', path: '/coordinator/coordination', icon: 'map' },
-        { label: 'Đội tình nguyện', path: '/coordinator/teams', icon: 'groups' },
-        { label: 'Kho vận & Nhu yếu phẩm', path: '/coordinator/inventory', icon: 'inventory_2' },
-        { label: 'Báo cáo & Thống kê', path: '/coordinator/reports', icon: 'description' },
+        { label: 'Báo cáo & Thống kê', path: '/portal/coordinator/reports', icon: 'description' },
       ]}
       searchPlaceholder="Tìm kiếm địa điểm, đội cứu hộ..."
     >
       {/* Page Header & Stats */}
-      <div className="flex flex-col lg:flex-row gap-6 justify-between items-start lg:items-end">
+      <div className="flex flex-col lg:flex-row gap-6 justify-between items-start lg:items-end mb-2">
         <div className="flex flex-col gap-2">
-          <h1 className="text-3xl md:text-4xl font-black tracking-tight text-white">
+          <h1 className="text-3xl md:text-4xl font-black tracking-tight text-text-main-dark dark:text-text-main-light">
             Điều phối hoạt động cứu trợ
           </h1>
-          <p className="text-slate-400 text-lg">
-            Khu vực: <span className="text-white font-bold">Huyện Lệ Thủy, Quảng Bình</span> - Mức
-            độ: <span className="text-red-400 font-bold">Khẩn cấp (Cấp 3)</span>
+          <p className="text-text-sub-dark dark:text-text-sub-light text-lg">
+            Khu vực:{' '}
+            <span className="text-text-main-dark dark:text-text-main-light font-bold">
+              Huyện Lệ Thủy, Quảng Bình
+            </span>{' '}
+            - Mức độ: <span className="text-red-400 font-bold">Khẩn cấp (Cấp 3)</span>
           </p>
         </div>
-        <div className="flex gap-3">
+        <div className="flex gap-3 mb-5">
           <Button variant="destructive" size="lg" className="shadow-lg shadow-red-900/20">
             <span className="material-symbols-outlined">warning</span>
             <span>Phát cảnh báo SOS</span>
@@ -89,48 +94,58 @@ export default function CoordinationPage() {
 
       {/* Stats Row */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-        <Card className="bg-[#283039] border-slate-700/50">
+        <Card className="bg-card-dark dark:bg-card-light border border-border/50 shadow-[0_4px_12px_rgba(0,0,0,0.25)] dark:shadow-[0_4px_12px_rgba(0,0,0,0.45)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.35)] transition-all duration-300">
+          {' '}
           <CardContent className="p-5 flex flex-col gap-1">
             <div className="flex justify-between items-start">
-              <p className="text-slate-400 font-medium">Đội đang di chuyển</p>
+              <p className="text-text-sub-dark dark:text-text-sub-light font-medium">
+                Đội đang di chuyển
+              </p>
               <span className="material-symbols-outlined text-blue-400">directions_car</span>
             </div>
-            <p className="text-3xl font-bold text-white">24</p>
+            <p className="text-3xl font-bold text-text-main-dark dark:text-text-main-light">24</p>
             <p className="text-xs text-green-400 flex items-center gap-1 mt-1">
               <span className="material-symbols-outlined text-[16px]">trending_up</span> +3 đội mới
             </p>
           </CardContent>
         </Card>
-        <Card className="bg-[#283039] border-slate-700/50">
+        <Card className="bg-card-dark dark:bg-card-light border border-border/50 shadow-[0_4px_12px_rgba(0,0,0,0.25)] dark:shadow-[0_4px_12px_rgba(0,0,0,0.45)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.35)] transition-all duration-300">
           <CardContent className="p-5 flex flex-col gap-1">
             <div className="flex justify-between items-start">
-              <p className="text-slate-400 font-medium">Đã đến điểm tập kết</p>
+              <p className="text-text-sub-dark dark:text-text-sub-light font-medium">
+                Đã đến điểm tập kết
+              </p>
               <span className="material-symbols-outlined text-green-400">flag</span>
             </div>
-            <p className="text-3xl font-bold text-white">15</p>
-            <p className="text-xs text-slate-500 mt-1">Trong 24h qua</p>
+            <p className="text-3xl font-bold text-text-main-dark dark:text-text-main-light">15</p>
+            <p className="text-xs text-text-muted-dark dark:text-text-muted-light mt-1">
+              Trong 24h qua
+            </p>
           </CardContent>
         </Card>
-        <Card className="bg-[#283039] border-red-900/30 relative overflow-hidden group">
-          <div className="absolute right-0 top-0 p-2 opacity-10 group-hover:opacity-20 transition-opacity">
+        <Card className="bg-card-dark dark:bg-card-light border border-red-900/30 dark:border-red-500/30 relative overflow-hidden group shadow-[0_6px_18px_rgba(239,68,68,0.35)] dark:shadow-[0_6px_18px_rgba(239,68,68,0.45)] hover:shadow-[0_10px_30px_rgba(239,68,68,0.55)] transition-all duration-300 ">
+          {' '}
+          <div className="absolute right-4 top-8 p-2 opacity-10 group-hover:opacity-20 transition-opacity">
             <span className="material-symbols-outlined text-red-500 text-6xl">sos</span>
           </div>
           <CardContent className="p-5 flex flex-col gap-1 relative z-10">
             <div className="flex justify-between items-start">
-              <p className="text-red-200 font-medium">Yêu cầu khẩn cấp (SOS)</p>
+              <p className="text-red-500 dark:text-red-300 font-medium">Yêu cầu khẩn cấp </p>
               <span className="material-symbols-outlined text-red-500 animate-pulse">fmd_bad</span>
             </div>
             <p className="text-3xl font-bold text-red-500">3</p>
-            <p className="text-xs text-red-400 mt-1">Cần xử lý ngay</p>
+            <p className="text-xs text-red-400 dark:text-red-300 mt-1">Cần xử lý ngay</p>
           </CardContent>
         </Card>
-        <Card className="bg-[#283039] border-slate-700/50">
+        <Card className="bg-card-dark dark:bg-card-light border border-border/50 shadow-[0_4px_12px_rgba(0,0,0,0.25)] dark:shadow-[0_4px_12px_rgba(0,0,0,0.45)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.35)] transition-all duration-300">
           <CardContent className="p-5 flex flex-col gap-1">
             <div className="flex justify-between items-start">
-              <p className="text-slate-400 font-medium">Vùng bị cô lập</p>
+              <p className="text-text-sub-dark dark:text-text-sub-light font-medium">
+                Vùng bị cô lập
+              </p>
               <span className="material-symbols-outlined text-orange-400">flood</span>
             </div>
-            <p className="text-3xl font-bold text-white">05</p>
+            <p className="text-3xl font-bold text-text-main-dark dark:text-text-main-light">05</p>
             <p className="text-xs text-orange-400 mt-1">Mực nước đang dâng</p>
           </CardContent>
         </Card>
@@ -139,13 +154,13 @@ export default function CoordinationPage() {
       {/* Map & Operations Area */}
       <div className="flex flex-col lg:flex-row gap-6 min-h-[600px]">
         {/* Map Section */}
-        <div className="flex-1 bg-surface-dark rounded-2xl overflow-hidden border border-slate-700 relative shadow-2xl flex flex-col">
+        <div className="flex-1 bg-surface-dark dark:bg-surface-light rounded-2xl overflow-hidden border border-border relative shadow-2xl flex flex-col">
           {/* Map Controls */}
           <div className="absolute top-4 left-4 z-20 flex flex-col gap-2">
-            <div className="bg-surface-dark/90 backdrop-blur text-white p-2 rounded-lg shadow-lg border border-slate-600 hover:bg-surface-dark cursor-pointer">
+            <div className="bg-surface-dark/90 dark:bg-surface-light/90 backdrop-blur text-text-main-dark dark:text-text-main-light p-2 rounded-lg shadow-lg border border-border hover:bg-surface-dark dark:hover:bg-surface-light cursor-pointer">
               <span className="material-symbols-outlined">add</span>
             </div>
-            <div className="bg-surface-dark/90 backdrop-blur text-white p-2 rounded-lg shadow-lg border border-slate-600 hover:bg-surface-dark cursor-pointer">
+            <div className="bg-surface-dark/90 dark:bg-surface-light/90 backdrop-blur text-text-main-dark dark:text-text-main-light p-2 rounded-lg shadow-lg border border-border hover:bg-surface-dark dark:hover:bg-surface-light cursor-pointer">
               <span className="material-symbols-outlined">remove</span>
             </div>
           </div>
@@ -153,17 +168,9 @@ export default function CoordinationPage() {
           {/* Map Filters */}
           <div className="absolute top-4 right-4 z-20 flex flex-wrap justify-end gap-2 max-w-lg">
             <Button
-              variant="primary"
-              size="sm"
-              className="rounded-full shadow-lg border border-blue-400"
-            >
-              <span className="material-symbols-outlined text-[18px]">auto_awesome</span>
-              AI Gợi ý tuyến đường
-            </Button>
-            <Button
               variant="ghost"
               size="sm"
-              className="bg-surface-dark/90 backdrop-blur text-white rounded-full shadow-lg border border-slate-600 hover:bg-card-dark"
+              className="bg-surface-dark/90 dark:bg-surface-light/90 backdrop-blur text-text-main-dark dark:text-text-main-light rounded-full shadow-lg border border-border hover:bg-card-dark dark:hover:bg-card-light"
             >
               <span className="material-symbols-outlined text-[18px] text-red-400">water_drop</span>
               Vùng ngập
@@ -171,7 +178,7 @@ export default function CoordinationPage() {
             <Button
               variant="ghost"
               size="sm"
-              className="bg-surface-dark/90 backdrop-blur text-white rounded-full shadow-lg border border-slate-600 hover:bg-card-dark"
+              className="bg-surface-dark/90 dark:bg-surface-light/90 backdrop-blur text-text-main-dark dark:text-text-main-light rounded-full shadow-lg border border-border hover:bg-card-dark dark:hover:bg-card-light"
             >
               <span className="material-symbols-outlined text-[18px] text-green-400">
                 local_hospital
@@ -181,7 +188,7 @@ export default function CoordinationPage() {
           </div>
 
           {/* Map Visualization */}
-          <div className="relative w-full h-full bg-[#0a0e14] min-h-[500px]">
+          <div className="relative w-full h-full bg-background-dark dark:bg-background-light min-h-[500px]">
             {/* Background Map Image */}
             <img
               className="w-full h-full object-cover opacity-40 mix-blend-luminosity grayscale"
@@ -246,10 +253,10 @@ export default function CoordinationPage() {
             {/* Volunteer Team 1 (Moving) */}
             <div className="absolute top-[38%] left-[25%] z-20 group cursor-pointer">
               <div className="relative">
-                <div className="absolute -top-12 left-1/2 -translate-x-1/2 bg-surface-dark text-white text-xs py-1 px-2 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity border border-slate-600 shadow-xl pointer-events-none">
+                <div className="absolute -top-12 left-1/2 -translate-x-1/2 bg-surface-dark dark:bg-surface-light text-text-main-dark dark:text-text-main-light text-xs py-1 px-2 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity border border-border shadow-xl pointer-events-none">
                   Đội Hỗ Trợ 01 - Đang di chuyển
                 </div>
-                <div className="size-8 bg-blue-600 rounded-full border-2 border-white flex items-center justify-center shadow-lg shadow-blue-500/50">
+                <div className="size-8 bg-blue-600 rounded-full border-2 border-white dark:border-gray-200 flex items-center justify-center shadow-lg shadow-blue-500/50">
                   <span className="material-symbols-outlined text-white text-[16px]">
                     navigation
                   </span>
@@ -260,10 +267,10 @@ export default function CoordinationPage() {
             {/* Volunteer Team 2 (SOS) */}
             <div className="absolute top-[65%] left-[55%] z-20 group cursor-pointer">
               <div className="relative">
-                <div className="absolute -top-12 left-1/2 -translate-x-1/2 bg-red-900 text-white text-xs py-1 px-2 rounded whitespace-nowrap opacity-100 transition-opacity border border-red-500 shadow-xl font-bold">
+                {/* <div className="absolute -top-12 left-1/2 -translate-x-1/2 bg-red-900 dark:bg-red-800 text-white text-xs py-1 px-2 rounded whitespace-nowrap opacity-100 transition-opacity border border-red-500 shadow-xl font-bold">
                   SOS: Đội Cứu Hộ 05
-                </div>
-                <div className="size-10 bg-red-600 rounded-full border-2 border-white flex items-center justify-center shadow-lg shadow-red-500/50 animate-bounce">
+                </div> */}
+                <div className="size-10 bg-red-600 rounded-full border-2 border-white dark:border-gray-200 flex items-center justify-center shadow-lg shadow-red-500/50 animate-bounce">
                   <span className="material-symbols-outlined text-white text-[20px]">warning</span>
                 </div>
               </div>
@@ -271,17 +278,19 @@ export default function CoordinationPage() {
 
             {/* Warehouse */}
             <div className="absolute top-[20%] left-[60%] z-20 group cursor-pointer">
-              <div className="size-8 bg-slate-700 rounded-lg border-2 border-slate-400 flex items-center justify-center shadow-lg">
-                <span className="material-symbols-outlined text-white text-[18px]">warehouse</span>
+              <div className="size-8 bg-card-dark dark:bg-card-light rounded-lg border-2 border-border flex items-center justify-center shadow-lg">
+                <span className="material-symbols-outlined text-text-main-dark dark:text-text-main-light text-[18px]">
+                  warehouse
+                </span>
               </div>
             </div>
           </div>
 
           {/* Bottom Info Bar on Map */}
-          <div className="absolute bottom-0 left-0 right-0 bg-surface-dark/95 backdrop-blur border-t border-slate-700 p-3 px-6 flex justify-between items-center z-20">
-            <div className="flex items-center gap-4 text-sm text-slate-300">
+          <div className="absolute bottom-0 left-0 right-0 bg-surface-dark/95 dark:bg-surface-light/95 backdrop-blur border-t border-border p-3 px-6 flex justify-between items-center z-20">
+            <div className="flex items-center gap-4 text-sm text-text-sub-dark dark:text-text-sub-light">
               <div className="flex items-center gap-2">
-                <span className="w-3 h-1 bg-[#137fec] rounded-full"></span>
+                <span className="w-3 h-1 bg-primary rounded-full"></span>
                 <span>AI Gợi ý (Nhanh nhất)</span>
               </div>
               <div className="flex items-center gap-2">
@@ -289,7 +298,7 @@ export default function CoordinationPage() {
                 <span>Đường bị chặn/Sạt lở</span>
               </div>
             </div>
-            <div className="text-xs text-slate-500 font-mono">
+            <div className="text-xs text-text-muted-dark dark:text-text-muted-light font-mono">
               Lat: 17.2032 N | Long: 106.6342 E
             </div>
           </div>
@@ -298,7 +307,8 @@ export default function CoordinationPage() {
         {/* Right Sidebar: Contextual Info */}
         <div className="w-full lg:w-96 flex flex-col gap-4 shrink-0">
           {/* AI Suggestion Card */}
-          <Card className="bg-gradient-to-br from-blue-900/40 to-[#283039] border-blue-500/30 relative overflow-hidden">
+          <Card className="py-2 relative overflow-hidden border border-blue-500/20 bg-gradient-to-br from-blue-50 dark:from-blue-800/30 via-card-light dark:via-card-dark to-card-light dark:to-card-dark shadow-sm dark:shadow-[0_8px_24px_rgba(0,0,0,0.45)] hover:dark:shadow-[0_12px_32px_rgba(0,0,0,0.55)] transition-all duration-300">
+            {' '}
             <div className="absolute top-0 right-0 p-3 opacity-20">
               <span className="material-symbols-outlined text-6xl text-blue-400">psychology</span>
             </div>
@@ -307,17 +317,23 @@ export default function CoordinationPage() {
                 <Badge variant="primary" size="sm">
                   AI SYSTEM
                 </Badge>
-                <span className="text-blue-300 text-sm font-medium">Đề xuất tối ưu</span>
+                <span className="text-blue-300 dark:text-blue-400 text-sm font-medium">
+                  Đề xuất tối ưu
+                </span>
               </div>
-              <CardTitle className="text-white text-lg">Thay đổi lộ trình: Đội Hỗ Trợ 01</CardTitle>
+              <CardTitle className="text-text-main-dark dark:text-text-main-light text-lg">
+                Thay đổi lộ trình: Đội Hỗ Trợ 01
+              </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-slate-300 text-sm mb-4">
+              <p className="text-text-sub-dark dark:text-text-sub-light text-sm mb-4">
                 Phát hiện mực nước dâng cao tại QL1A đoạn km20. Hệ thống gợi ý chuyển hướng sang
                 đường tránh DT602.
               </p>
-              <div className="flex items-center gap-3 text-sm text-green-400 mb-4 bg-green-400/10 p-2 rounded border border-green-400/20">
-                <span className="material-symbols-outlined text-[18px]">timer</span>
+              <div className="flex items-center gap-3 text-sm mb-4 p-2 rounded border text-green-700 dark:text-green-400 bg-green-50 dark:bg-green-400/20 border-green-200 dark:border-green-400/20">
+                <span className="material-symbols-outlined text-[18px] text-green-600 dark:text-green-400">
+                  timer
+                </span>
                 <span>Tiết kiệm dự kiến: 15 phút</span>
               </div>
               <div className="flex gap-2">
@@ -327,7 +343,7 @@ export default function CoordinationPage() {
                 <Button
                   variant="outline"
                   size="sm"
-                  className="flex-1 bg-transparent border-slate-600 text-slate-300 hover:bg-slate-700"
+                  className="flex-1 bg-transparent border-border text-text-sub-dark dark:text-text-sub-light hover:bg-card-dark dark:hover:bg-card"
                 >
                   Bỏ qua
                 </Button>
@@ -336,15 +352,20 @@ export default function CoordinationPage() {
           </Card>
 
           {/* Active Teams List */}
-          <Card className="bg-[#283039] border-slate-700 flex-1 flex flex-col overflow-hidden max-h-[500px]">
-            <CardHeader className="border-b border-slate-700 bg-[#1c2a38]">
+          <Card className="bg-card-light dark:bg-card-dark border-border flex-1 flex flex-col overflow-hidden max-h-[500px] shadow-sm dark:shadow-lg">
+            {/* Header */}
+            <CardHeader className="border-b border-border bg-sub-surface-light dark:bg-sub-surface-dark">
               <div className="flex justify-between items-center">
-                <CardTitle className="text-white">Đội cứu hộ trực tuyến</CardTitle>
+                <CardTitle className="text-text-main-dark dark:text-text-main-light">
+                  Đội cứu hộ trực tuyến
+                </CardTitle>
                 <Badge variant="secondary" size="sm" appearance="outline">
                   12 active
                 </Badge>
               </div>
             </CardHeader>
+
+            {/* Body */}
             <ScrollArea className="flex-1 p-2">
               <div className="space-y-2">
                 {mockTeams.map((team) => (
@@ -352,29 +373,50 @@ export default function CoordinationPage() {
                     key={team.id}
                     className={`p-3 rounded-lg border cursor-pointer transition-all ${
                       team.status === 'sos'
-                        ? 'bg-red-900/10 border-red-500/50 hover:bg-red-900/20'
-                        : 'bg-surface-dark border-slate-700 hover:border-slate-500'
+                        ? `
+                bg-red-50 dark:bg-red-900/25
+                border-red-300 dark:border-red-500/50
+                hover:bg-red-100 dark:hover:bg-red-900/35
+              `
+                        : `
+                bg-surface-light dark:bg-surface-dark
+                border-border
+                hover:border-primary/50
+              `
                     }`}
                   >
+                    {/* Top row */}
                     <div className="flex justify-between items-start mb-2">
                       <div className="flex items-center gap-2">
-                        <div
-                          className={`size-2 rounded-full ${
-                            team.status === 'sos'
-                              ? 'bg-red-500 animate-ping'
-                              : team.status === 'arrived'
+                        {/* Status dot */}
+                        {team.status === 'sos' ? (
+                          <div className="relative">
+                            <span className="absolute inset-0 rounded-full bg-red-400/40 animate-ping"></span>
+                            <span className="relative size-2 rounded-full bg-red-600"></span>
+                          </div>
+                        ) : (
+                          <div
+                            className={`size-2 rounded-full ${
+                              team.status === 'arrived'
                                 ? 'bg-green-500'
                                 : 'bg-blue-500 animate-pulse'
-                          }`}
-                        ></div>
+                            }`}
+                          />
+                        )}
+
+                        {/* Team name */}
                         <span
                           className={`font-bold text-sm ${
-                            team.status === 'sos' ? 'text-red-200' : 'text-white'
+                            team.status === 'sos'
+                              ? 'text-red-700 dark:text-red-300'
+                              : 'text-text-main-dark dark:text-text-main-light'
                           }`}
                         >
                           {team.name}
                         </span>
                       </div>
+
+                      {/* Right badge / info */}
                       {team.status === 'sos' ? (
                         <Badge variant="destructive" size="xs">
                           SOS
@@ -384,26 +426,37 @@ export default function CoordinationPage() {
                           Đã đến nơi
                         </Badge>
                       ) : (
-                        <span className="text-xs font-mono text-slate-400">{team.distance}</span>
+                        <span className="text-xs font-mono text-text-sub-dark dark:text-text-sub-light">
+                          {team.distance}
+                        </span>
                       )}
                     </div>
+
+                    {/* SOS message */}
                     {team.status === 'sos' && (
-                      <p className="text-xs text-red-300 mb-1">Báo cáo: Kẹt xe do sạt lở</p>
+                      <p className="text-xs text-red-600 dark:text-red-400 mb-1">
+                        Báo cáo: Kẹt xe do sạt lở
+                      </p>
                     )}
-                    <div className="flex items-center justify-between text-xs text-slate-400">
-                      <span className="flex items-center gap-1">
+
+                    {/* Bottom row */}
+                    <div className="flex items-center justify-between text-xs">
+                      <span className="flex items-center gap-1 text-text-sub-dark dark:text-text-sub-light">
                         <span className="material-symbols-outlined text-[14px]">
                           {team.vehicleType}
                         </span>
                         {team.vehicle}
                       </span>
+
                       {team.status === 'sos' ? (
-                        <span className="text-red-400 font-bold">Cần hỗ trợ</span>
+                        <span className="text-red-600 dark:text-red-500 font-bold">Cần hỗ trợ</span>
                       ) : team.status === 'arrived' ? (
-                        <span className="text-slate-500">{team.time}</span>
+                        <span className="text-text-muted-dark dark:text-text-muted-light">
+                          {team.time}
+                        </span>
                       ) : (
-                        <span className="text-blue-400 group-hover:underline">
-                          Xem chi tiết -&gt;
+                        <span className="text-blue-600 dark:text-blue-400 hover:underline">
+                          Xem chi tiết →
                         </span>
                       )}
                     </div>

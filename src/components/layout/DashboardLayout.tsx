@@ -28,6 +28,7 @@ export function DashboardLayout({
 }: DashboardLayoutProps) {
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
 
   // Generate breadcrumb from pathname
   const pathnames = location.pathname.split('/').filter(Boolean);
@@ -46,13 +47,15 @@ export function DashboardLayout({
   return (
     <div className="relative flex min-h-screen w-full flex-row overflow-hidden">
       {/* Sidebar */}
-      <DashboardSidebar projects={projects} navItems={navItems} />
+      <DashboardSidebar projects={projects} navItems={navItems} isCollapsed={isSidebarCollapsed} />
 
       {/* Main Content */}
-      <div className="flex flex-col flex-1 h-screen overflow-hidden">
+      <div className="flex flex-col flex-1 h-screen overflow-hidden transition-all duration-300">
         {/* Header */}
         <DashboardHeader
           onMenuClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          onSidebarToggle={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
+          isSidebarCollapsed={isSidebarCollapsed}
           searchPlaceholder={searchPlaceholder}
           // onSearchChange={onSearchChange}
         />
